@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="col-12">
+        <table>
+            <thead>
+                <tr>
+                    <th>Sr No</th>
+                    <th>User Name</th>
+                    <th>Full Name</th>
+                    <th>Email</th> 
+                </tr>
+            </thead>
+            <!-- <tbody>
+                @for (item of userList; track $index) {
+                    <tr>
+                        <td>{{$index+1}}</td>
+                        <td>{{item.userName}}</td>
+                        <td>{{item.fullName}}</td>
+                        <td>{{item.emailId}}</td>
+                       
+                    </tr>
+                }
+                
+            </tbody> -->
+            <!-- <tbody>
+            @for (item of userList$ |async; track $index) {
+                <tr>
+                    <td>{{$index+1}}</td>
+                    <td>{{item.userName}}</td>
+                    <td>{{item.fullName}}</td>
+                    <td>{{item.emailId}}</td>
+                   
+                </tr>
+            }
+            
+        </tbody>  -->
+        <!-- <ng-container *ngIf="(userListResposne$ |async) as apiResonse">
+            <label>Name</label>
+            <label for=""> {{apiResonse.name}}</label>
+            <label>Emial</label>
+            <label for="">{{apiResonse.name}}</label>
+            <label>Name</label>
+            <label for=""> {{apiResonse.name}}</label>
+        </ng-container> -->
+      
+        <tbody>
+            
+            <ng-container *ngIf="(userListResposne$ |async) as apiResonse"> 
+                @for (item of apiResonse.data; track $index) {
+                    <tr>
+                        <td>{{$index+1}}</td>
+                        <td>{{item.userName}}</td>
+                        <td>{{item.fullName}}</td>
+                        <td>{{item.emailId}}</td>
+                    </tr>
+                }
+            </ng-container>
+            
+            
+        </tbody> 
+        </table>
+    </div>
+</div>

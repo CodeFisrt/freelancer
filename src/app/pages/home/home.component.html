@@ -1,0 +1,82 @@
+
+
+<div class="container mt-5" id="howItWorks">
+    <h2 class="text-center">How It Works</h2>
+    <p class="text-center">Freelancers can browse jobs, submit proposals, and work with clients. Clients can post jobs, receive bids, and hire freelancers.</p>
+    <div class="row text-center">
+        <div class="col-md-4">
+            <i class="fa fa-briefcase fa-3x"></i>
+            <h4>Post a Job</h4>
+            <p>Clients can post jobs detailing their requirements.</p>
+        </div>
+        <div class="col-md-4">
+            <i class="fa fa-user fa-3x"></i>
+            <h4>Freelancers Bid</h4>
+            <p>Freelancers submit proposals with their rates and expertise.</p>
+        </div>
+        <div class="col-md-4">
+            <i class="fa fa-briefcase fa-3x"></i>
+            <h4>Hire & Work</h4>
+            <p>Clients hire the best freelancer and collaborate efficiently.</p>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5" id="jobSection">
+    <h2 class="text-center">Available Jobs</h2>
+    <div class="mb-3">
+        <input type="text"  class="form-control" placeholder="Search for jobs...">
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Web Development</h5>
+                    <p class="card-text">Looking for a full-stack developer to build a website.</p>
+                    <a href="#" class="btn btn-primary">Apply</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Graphic Design</h5>
+                    <p class="card-text">Need a logo and branding design for a startup.</p>
+                    <a href="#" class="btn btn-primary">Apply</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">SEO Optimization</h5>
+                    <p class="card-text">Looking for an expert to improve website SEO.</p>
+                    <a href="#" class="btn btn-primary">Apply</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5" id="registerSection">
+    <h2 class="text-center">Register</h2>
+    <form #form="ngForm">
+        <div class="mb-3">
+            <label class="form-label">Username</label>
+            <input type="text"  [(ngModel)]="registerObj.userName" name="userName" required class="form-control" >
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input type="email" [(ngModel)]="registerObj.emailId" name="emailId" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Full Name</label>
+            <input type="text" [(ngModel)]="registerObj.fullName" name="fullName" class="form-control" >
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Password</label>
+            <input type="password" [(ngModel)]="registerObj.password" name="password" class="form-control" >
+        </div>
+        <button type="button" [disabled]="form.invalid" (click)="onRegisterUser(form)" class="btn btn-primary w-100">Register</button>
+    </form>
+</div>
