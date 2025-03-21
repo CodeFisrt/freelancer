@@ -53,4 +53,12 @@ export class UserService {
   registerUser(obj: UserRegister) : Observable<IAPIResponce>{
     return this.http.post<IAPIResponce>(environment.API_URL + Constant.API_METHOD_NAME.USER.CREATE_USER,obj)
   }
+
+  updateUser(obj: UserRegister):Observable<IAPIResponce>{
+    return this.http.post<IAPIResponce>(environment.API_URL + Constant.API_METHOD_NAME.USER.UPDATE_USER,obj)
+  }
+
+  deleteUser(userId:number):Observable<IAPIResponce>{
+    return this.http.delete<IAPIResponce>(environment.API_URL + Constant.API_METHOD_NAME.USER.DELETE_USER+userId)
+  }
 }

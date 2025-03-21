@@ -6,10 +6,10 @@ export class UserRegister {
     password: string;
 
     constructor(){
+        this.userId = 0;
+        this.userName = "";
         this.emailId = '';
         this.fullName = '';
         this.password = "";
-        this.userId = 0;
-        this.userName = "";
     }
 }

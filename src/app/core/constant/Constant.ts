@@ -2,7 +2,9 @@ export const Constant = {
     API_METHOD_NAME: {
         USER: {
             GET_ALL_USERS: 'GetAllUsers',
-            CREATE_USER: 'Register'
+            CREATE_USER: 'Register',
+            UPDATE_USER: 'UpdateUser',
+            DELETE_USER: 'DeleteUserByUserId?userId='
         },
         JOB: {
             GET_ALL_JOBS: 'GetAllJob'

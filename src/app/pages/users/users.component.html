@@ -1,62 +1,116 @@
-<div class="row">
-    <div class="col-12">
-        <table>
-            <thead>
-                <tr>
-                    <th>Sr No</th>
-                    <th>User Name</th>
-                    <th>Full Name</th>
-                    <th>Email</th> 
-                </tr>
-            </thead>
-            <!-- <tbody>
-                @for (item of userList; track $index) {
-                    <tr>
-                        <td>{{$index+1}}</td>
-                        <td>{{item.userName}}</td>
-                        <td>{{item.fullName}}</td>
-                        <td>{{item.emailId}}</td>
-                       
-                    </tr>
-                }
-                
-            </tbody> -->
-            <!-- <tbody>
-            @for (item of userList$ |async; track $index) {
-                <tr>
-                    <td>{{$index+1}}</td>
-                    <td>{{item.userName}}</td>
-                    <td>{{item.fullName}}</td>
-                    <td>{{item.emailId}}</td>
-                   
-                </tr>
-            }
-            
-        </tbody>  -->
-        <!-- <ng-container *ngIf="(userListResposne$ |async) as apiResonse">
-            <label>Name</label>
-            <label for=""> {{apiResonse.name}}</label>
-            <label>Emial</label>
-            <label for="">{{apiResonse.name}}</label>
-            <label>Name</label>
-            <label for=""> {{apiResonse.name}}</label>
-        </ng-container> -->
-      
-        <tbody>
-            
-            <ng-container *ngIf="(userListResposne$ |async) as apiResonse"> 
-                @for (item of apiResonse.data; track $index) {
-                    <tr>
-                        <td>{{$index+1}}</td>
-                        <td>{{item.userName}}</td>
-                        <td>{{item.fullName}}</td>
-                        <td>{{item.emailId}}</td>
-                    </tr>
-                }
-            </ng-container>
-            
-            
-        </tbody> 
-        </table>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-8">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5>Users List</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Sr No</th>
+                                <th>User Name</th>
+                                <th>Full Name</th>
+                                <th>Email</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <!-- <tbody>
+                            @for (item of userList; track $index) {
+                                <tr>
+                                    <td>{{$index+1}}</td>
+                                    <td>{{item.userName}}</td>
+                                    <td>{{item.fullName}}</td>
+                                    <td>{{item.emailId}}</td>
+                                   
+                                </tr>
+                            }
+                            
+                        </tbody> -->
+                        <!-- <tbody>
+                        @for (item of userList$ |async; track $index) {
+                            <tr>
+                                <td>{{$index+1}}</td>
+                                <td>{{item.userName}}</td>
+                                <td>{{item.fullName}}</td>
+                                <td>{{item.emailId}}</td>
+                               
+                            </tr>
+                        }
+                        
+                    </tbody>  -->
+                        <!-- <ng-container *ngIf="(userListResposne$ |async) as apiResonse">
+                        <label>Name</label>
+                        <label for=""> {{apiResonse.name}}</label>
+                        <label>Emial</label>
+                        <label for="">{{apiResonse.name}}</label>
+                        <label>Name</label>
+                        <label for=""> {{apiResonse.name}}</label>
+                    </ng-container> -->
+
+                        <tbody>
+
+                            <ng-container *ngIf="(userListResposne$ |async) as apiResonse">
+                                @for (item of apiResonse.data; track $index) {
+                                <tr>
+                                    <td>{{$index+1}}</td>
+                                    <td>{{item.userName}}</td>
+                                    <td>{{item.fullName}}</td>
+                                    <td>{{item.emailId}}</td>
+                                    <td class="d-flex justify-content-around">
+                                        <button class="btn btn-outline-warning btn-sm"
+                                            (click)="onEdit(item)">Update</button>
+                                        <button class="btn btn-outline-danger btn-sm"
+                                            (click)="onDelete(item.userId)">Delete</button>
+                                    </td>
+                                </tr>
+                                }
+                            </ng-container>
+
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5>Update User</h5>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="Updateform">
+                        <div class="mb-3">
+                            <label class="form-label">Username</label>
+                            <input type="text" placeholder="Enter Username" formControlName="userName"  name="userName" required class="form-control">
+                                
+                                <div *ngIf="Updateform.get('userName').touched">
+                                    <small class="text-danger"  *ngIf="Updateform.get('userName').errors?.required">Username is required</small>
+                                    <small class="text-danger" *ngIf="Updateform.get('userName').errors?.minLength">Username must be at least 5 characters</small>
+                                </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" placeholder="Enter Email" formControlName="emailId"  name="emailId" class="form-control">
+                            <div *ngIf="Updateform.get('emailId').touched">
+                                <small class="text-danger"  *ngIf="Updateform.get('emailId').errors?.required">Email Id is required</small>
+                                <small class="text-danger" *ngIf="Updateform.get('emailId').errors?.email">Email Id is invalid</small>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Full Name</label>
+                            <input type="text" placeholder="Enter Fullname" formControlName="fullName"  name="fullName" class="form-control">
+                            <div *ngIf="Updateform.get('fullName').touched">
+                                <small class="text-danger"  *ngIf="Updateform.get('fullName').errors?.required">Full Name is required</small>
+                                <small class="text-danger" *ngIf="Updateform.get('fullName').errors?.email">Full Name must be at least 5 characters</small>
+                            </div>
+                        </div>
+                        <button type="button" (click)="onUpdate()" class="btn btn-primary mt-2" [disabled]="!Updateform.valid">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
