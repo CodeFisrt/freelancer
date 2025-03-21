@@ -1,5 +1,8 @@
+<input type="date"/>
+<br>
+<p-datepicker [(ngModel)]="date" dateFormat="dd/mm/yy" [minDate]="minDate" [maxDate]="maxDate" />
 <div class="row">
-    <div class="col-12">
+    <div class="col-6">
         <table>
             <thead>
                 <tr>
@@ -59,4 +62,10 @@
         </tbody> 
         </table>
     </div>
+    <!-- <div class="col-6">
+        <ag-grid-angular
+        [rowData]="userList" 
+        [columnDefs]="columnDefs"
+        rowModelType="clientSide" />
+    </div> -->
 </div>

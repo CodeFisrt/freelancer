@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, ElementRef, inject, ViewChild } from '@angular/core';
 import { UserRegister } from '../../core/models/class/User';
 import { FormsModule, NgForm } from '@angular/forms';
 import { UserService } from '../../core/services/user/user.service';
@@ -13,6 +13,7 @@ import { IAPIResponce } from '../../core/models/interface/Master';
 export class HomeComponent {
 
   name: string = '';
+ 
 
   registerObj: UserRegister =  new UserRegister();
   userService= inject(UserService);
@@ -29,6 +30,8 @@ export class HomeComponent {
       })
     } 
   }
+
+ 
 
 
 }

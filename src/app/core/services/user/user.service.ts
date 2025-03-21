@@ -18,6 +18,11 @@ export class UserService {
     return this.http.get<IAPIResponce>(environment.API_URL + Constant.API_METHOD_NAME.USER.GET_ALL_USERS)
   }
 
+  login(obj:any): Observable<IAPIResponce> {
+    debugger;
+    return this.http.post<IAPIResponce>(environment.API_URL + Constant.API_METHOD_NAME.USER.LOGIN,obj)
+  }
+
   getAllUsers(): Observable<UserList[]> {
     debugger;
     return this.http.get<IAPIResponce>(environment.API_URL + Constant.API_METHOD_NAME.USER.GET_ALL_USERS).pipe(
