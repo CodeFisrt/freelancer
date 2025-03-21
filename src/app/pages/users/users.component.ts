@@ -13,6 +13,10 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
   styleUrl: './users.component.css'
 })
 export class UsersComponent implements OnInit, OnDestroy {
+  date: any;
+userService = inject(UserService);
+userList: UserList[] = [];
+subScriptions: Subscription[]= [];
 
   userService = inject(UserService);
   userList: UserList[] = [];

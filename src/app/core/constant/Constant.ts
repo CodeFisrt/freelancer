@@ -24,6 +24,9 @@ export const Constant = {
     REG_EX:{
         PAN_CARD:"",
         AADHAR_CARD: ""
+    },
+    lOCAL_STRORAGE_KEYS:{
+        LOGGED_USER:'freeUser'
     }
 
 }

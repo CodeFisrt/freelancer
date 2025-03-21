@@ -4,13 +4,15 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "remote":"ng serve --port 4209",
+    "remote": "ng serve --port 4209",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
   "private": true,
   "dependencies": {
+    "@ag-grid-community/angular": "^32.3.4",
+    "@ag-grid-community/client-side-row-model": "^32.3.4",
     "@angular/animations": "^19.0.0",
     "@angular/common": "^19.0.0",
     "@angular/compiler": "^19.0.0",
@@ -19,6 +21,11 @@
     "@angular/platform-browser": "^19.0.0",
     "@angular/platform-browser-dynamic": "^19.0.0",
     "@angular/router": "^19.0.0",
+    "@primeng/themes": "^19.0.10",
+    "ag-grid-angular": "^33.1.1",
+    "bootstrap": "^5.3.3",
+    "font-awesome": "^4.7.0",
+    "primeng": "^19.0.10",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"

@@ -15,17 +15,49 @@
                 </li>
             </ul>
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item" id="loginRegister">
-                    <a class="nav-link" href="#">Login</a>
-                    <a class="nav-link" href="#registerSection">Register</a>
-                </li>
-                <li class="nav-item d-none" id="userSection">
-                    <span class="navbar-text me-3" id="userName">User</span>
-                    <a class="nav-link" href="#" id="logoff">Logoff</a>
-                </li>
+                @if (!loggedUserData) {
+                    <li class="nav-item" id="loginRegister">
+                        <a class="nav-link"  (click)="openModel()">Login</a>
+                        <a class="nav-link" href="#registerSection">Register</a>
+                    </li>
+                } @else {
+                    <li class="nav-item" id="userSection">
+                        <span class="navbar-text me-3" id="userName">{{loggedUserData.userName}}</span>
+                        <a class="nav-link"  id="logoff" (click)="onLogooff()">Logoff</a>
+                    </li>
+                }
+               
+               
             </ul>
         </div>
     </div>
 </nav>
  
 <router-outlet />
+
+<div class="modal"  #loginModal>
+    <div class="modal-dialog">
+      <div class="modal-content"> 
+        <div class="modal-header">
+          <h4 class="modal-title">Modal Heading</h4>
+          <button type="button" class="btn-close" (click)="closeModel()" data-bs-dismiss="modal"></button>
+        </div> 
+        <div class="modal-body">
+            <form #form="ngForm">
+                <div class="mb-3">
+                    <label class="form-label">Username</label>
+                    <input type="text" [(ngModel)]="loginObj.userName" name="userName" required class="form-control" >
+                </div> 
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <input type="password"  [(ngModel)]="loginObj.password" name="password" class="form-control" >
+                </div>
+               
+            </form>
+        </div> 
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" (click)="onLogin()" data-bs-dismiss="modal">Login</button>
+        </div> 
+      </div>
+    </div>
+  </div>
