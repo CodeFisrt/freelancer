@@ -16,11 +16,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   date: any;
 userService = inject(UserService);
 userList: UserList[] = [];
-subScriptions: Subscription[]= [];
-
-  userService = inject(UserService);
-  userList: UserList[] = [];
-  subScriptions: Subscription[] = [];
+subScriptions: Subscription[]= []; 
 
   userList$: Observable<UserList[]> = new Observable<UserList[]>();
   userListResposne$: Observable<IAPIResponce> = new Observable<IAPIResponce>();

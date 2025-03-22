@@ -4,6 +4,7 @@ export const Constant = {
             GET_ALL_USERS: 'GetAllUsers',
             CREATE_USER: 'Register',
             UPDATE_USER: 'UpdateUser',
+            LOGIN:'login',
             DELETE_USER: 'DeleteUserByUserId?userId='
         },
         JOB: {
