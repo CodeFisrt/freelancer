@@ -27,12 +27,13 @@
     <div class="mb-3">
         <input type="text"  class="form-control" placeholder="Search for jobs...">
     </div>
+    {{data|json}}
     <div class="row">
         <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Web Development</h5>
-                    <p class="card-text">Looking for a full-stack developer to build a website.</p>
+                    <h5 class="card-title">{{data?.title}}</h5>
+                    <p class="card-text" [innerHTML]="data?.description |sanitize"></p>
                     <a href="#" class="btn btn-primary">Apply</a>
                 </div>
             </div>
