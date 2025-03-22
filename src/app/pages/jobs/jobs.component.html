@@ -1,1 +1,15 @@
-<p>jobs works!</p>
+<div class="container mt-5" id="jobSection">
+    <h2 class="text-center">My Jobs</h2>
+    <div class="row mt-4">
+        @for (job of jobList; track $index) {
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{job.title}}</h5>
+                    <p class="card-text">{{job.skillsRequired}}</p>
+                </div>
+            </div>
+        </div>
+    }
+    </div>
+</div>
