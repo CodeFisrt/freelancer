@@ -1,11 +1,12 @@
-import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { UserRegister } from '../../core/models/class/User';
 import { FormsModule, NgForm } from '@angular/forms';
 import { UserService } from '../../core/services/user/user.service';
-import { IAPIResponce } from '../../core/models/interface/Master';
+import { IAPIResponce, IJobListAPIResponce, JobList } from '../../core/models/interface/Master';
 import { JobService } from '../../core/services/job/job.service';
 import { JsonPipe } from '@angular/common';
 import { SanitizePipe } from '../../shared/pipes/sanitize.pipe';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -13,20 +14,17 @@ import { SanitizePipe } from '../../shared/pipes/sanitize.pipe';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent  implements OnInit{
+export class HomeComponent  implements OnInit,OnDestroy{
 
   name: string = '';
-  data: any;
-
+  jobList: JobList[] = [];
   registerObj: UserRegister =  new UserRegister();
   userService= inject(UserService);
-  jpobService= inject(JobService);
+  jobService= inject(JobService);
+  subscriptions:Subscription[] = [];
 
   ngOnInit(): void {
-    this.jpobService.getJobById().subscribe((res:any)=>{
-      debugger;
-      this.data =  res.data;
-    })
+    this.getAllJobs();
   }
 
   onRegisterUser(form:NgForm) {
@@ -42,7 +40,19 @@ export class HomeComponent  implements OnInit{
     } 
   }
 
- 
+  getAllJobs(){
+    this.subscriptions.push(
+    this.jobService.getAllJobs().subscribe((res:JobList[])=>{
+      debugger;
+      this.jobList =  res;
+    }));
+  }
+
+  ngOnDestroy():void{
+    this.subscriptions.forEach(element =>{
+      element.unsubscribe();
+    })
+  }
 
 
 }

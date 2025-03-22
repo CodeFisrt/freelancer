@@ -27,9 +27,19 @@
     <div class="mb-3">
         <input type="text"  class="form-control" placeholder="Search for jobs...">
     </div>
-    {{data|json}}
     <div class="row">
-        <div class="col-md-4">
+        @for (job of jobList; track $index) {
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{job.title}}</h5>
+                    <p class="card-text">{{job.skillsRequired}}</p>
+                    <a class="btn btn-primary">Apply</a>
+                </div>
+            </div>
+        </div>
+     }
+     <!--    <div class="col-md-4">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">{{data?.title}}</h5>
@@ -37,25 +47,7 @@
                     <a href="#" class="btn btn-primary">Apply</a>
                 </div>
             </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Graphic Design</h5>
-                    <p class="card-text">Need a logo and branding design for a startup.</p>
-                    <a href="#" class="btn btn-primary">Apply</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">SEO Optimization</h5>
-                    <p class="card-text">Looking for an expert to improve website SEO.</p>
-                    <a href="#" class="btn btn-primary">Apply</a>
-                </div>
-            </div>
-        </div>
+        </div> -->
     </div>
 </div>
 

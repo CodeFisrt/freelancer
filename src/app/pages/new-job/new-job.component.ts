@@ -7,6 +7,7 @@ import { EditorModule } from 'primeng/editor';
 import { DatePickerModule } from 'primeng/datepicker';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { IJobListAPIResponce } from '../../core/models/interface/Master';
 @Component({
   selector: 'app-new-job',
   imports: [ReactiveFormsModule,EditorModule,DatePickerModule,ToastModule],
@@ -22,7 +23,6 @@ export class NewJobComponent {
   jobService = inject(JobService)
   
 constructor(private messageService: MessageService) {
-  
   this.iniitalizeForm();
 }
 
@@ -43,8 +43,13 @@ constructor(private messageService: MessageService) {
 
   onSave() {
     const formValue =  this.newJobForm.value;
-    this.jobService.newJob(formValue).subscribe((res:any)=>{
-      this.messageService.add({ severity: 'info', summary: 'Info', detail: 'New J0ob Created', life: 3000 });
+    this.jobService.newJob(formValue).subscribe((res:IJobListAPIResponce)=>{
+      if(res.success){
+        this.messageService.add({ severity: 'info', summary: 'Info', detail: 'New Job Created', life: 3000 });
+        this.iniitalizeForm();
+      }else{
+        alert("Something Went Wrong");
+      }
     })
   }
 

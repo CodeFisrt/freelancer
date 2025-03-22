@@ -8,9 +8,10 @@ export const Constant = {
             DELETE_USER: 'DeleteUserByUserId?userId='
         },
         JOB: {
-            GET_ALL_JOBS: 'GetAllJob',
+            GET_ALL_JOBS: 'GetAllJobs',
             CREATE_NEW_JOB:'CreateNewProjectJob',
-            GET_JOB_BY_ID:'GetJobById?id=12'
+            GET_JOB_BY_ID:'GetJobById?id=',
+            GET_ALL_JOBS_BY_USERID:'GetProjectsCreatedByUserId?userId=',
         }
     },
     KEY:{

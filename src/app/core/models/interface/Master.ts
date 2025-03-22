@@ -4,8 +4,12 @@ export interface IAPIResponce {
     data: any
 }
 
-export interface UserList {
+export interface IJobListAPIResponce {
+    success: true,
+    data: any
+}
 
+export interface UserList {
     userId: number
     userName: string
     emailId: string
@@ -17,3 +21,12 @@ export interface UserList {
     refreshToken: any
     refreshTokenExpiryTime: any
 }
+
+export interface JobList{
+    projectId: number,
+    title: string,
+    deadline: string ,
+    skillsRequired: string,
+    createdByUser: string,
+    userId: number
+} 
