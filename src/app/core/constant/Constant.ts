@@ -12,6 +12,10 @@ export const Constant = {
             CREATE_NEW_JOB:'CreateNewProjectJob',
             GET_JOB_BY_ID:'GetJobById?id=',
             GET_ALL_JOBS_BY_USERID:'GetProjectsCreatedByUserId?userId=',
+        },
+        BID: {
+            CREATE_NEW_BID: 'bids',
+             
         }
     },
     KEY:{

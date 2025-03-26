@@ -18,15 +18,20 @@ export class JobService {
     return this.http.post<IJobListAPIResponce>(environment.API_URL+ Constant.API_METHOD_NAME.JOB.CREATE_NEW_JOB,obj)
   }
 
+  applyBid(obj:any):Observable<any> {
+    return this.http.post<any>(environment.API_URL+ Constant.API_METHOD_NAME.BID.CREATE_NEW_BID,obj)
+  }
+
+
   getJobById():Observable<JobList> {
     return this.http.get<JobList>(environment.API_URL+ Constant.API_METHOD_NAME.JOB.GET_JOB_BY_ID)
   }
   
   getAllJobs(): Observable<JobList[]> {
-    debugger;
+    
     return this.http.get<IJobListAPIResponce>(environment.API_URL + Constant.API_METHOD_NAME.JOB.GET_ALL_JOBS).pipe(
       map((response: any) => {
-        debugger;
+        
         return response.data;
       })
     );

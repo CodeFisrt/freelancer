@@ -46,6 +46,7 @@ export class AppComponent {
     this.userServioce.login(this.loginObj).subscribe((res:any)=>{
       if(res.result) {
         this.loggedUserData =  res.data;
+        this.userServioce.loggedUserData = res.data;
         localStorage.setItem(Constant.lOCAL_STRORAGE_KEYS.LOGGED_USER,JSON.stringify(res.data));
         this.closeModel();
       } else {
@@ -56,5 +57,6 @@ export class AppComponent {
   onLogooff() {
     localStorage.removeItem(Constant.lOCAL_STRORAGE_KEYS.LOGGED_USER);
     this.loggedUserData =  undefined;
+    this.userServioce.loggedUserData =  undefined;
   }
 }

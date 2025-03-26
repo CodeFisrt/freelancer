@@ -38,7 +38,7 @@ constructor(private messageService: MessageService) {
       status:new FormControl("Live"),
       createdDate:new FormControl(new Date())
     })
-    debugger;
+    
   }
 
   onSave() {

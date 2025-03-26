@@ -32,16 +32,16 @@ subScriptions: Subscription[]= [];
   }
 
   ngOnInit(): void {
-    debugger;
+    
     const data = this.userService.getAllUsers().subscribe((res: UserList[]) => {
-      debugger;
+      
       this.userList = res;
     })
     this.subScriptions.push(data);
 
     this.subScriptions.push(
       this.userService.getAllUsers2().subscribe((res: UserList[]) => {
-        debugger;
+        
         this.userList = res;
       })
     )
@@ -68,7 +68,7 @@ subScriptions: Subscription[]= [];
 
 
   onEdit(user: UserList) {
-    debugger;
+    
     this.initializeForm(user);
   }
 

@@ -10,25 +10,75 @@ import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
-  imports: [FormsModule,JsonPipe,SanitizePipe],
+  imports: [FormsModule,JsonPipe,SanitizePipe,FormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent  implements OnInit,OnDestroy{
-
+  @ViewChild("bidModel") loginModal! : ElementRef;
   name: string = '';
   jobList: JobList[] = [];
   registerObj: UserRegister =  new UserRegister();
   userService= inject(UserService);
   jobService= inject(JobService);
   subscriptions:Subscription[] = [];
+  currentSelectedJob:any;
 
-  ngOnInit(): void {
-    this.getAllJobs();
+  bidObj: any ={
+    "bidId": 0,
+    "projectId": 0,
+    "userId": 0,
+    "bidAmount": 1,
+    "estimatedDays": 365,
+    "proposalText": "string",
+    "status": "New",
+    "createdDate":  new Date()
   }
 
-  onRegisterUser(form:NgForm) {
+  ngOnInit(): void {
+    
+    this.getAllJobs();
+  }
+  onApplay(jobDetails: any) {
+    this.currentSelectedJob =  jobDetails;
+    this.bidObj.projectId =   this.currentSelectedJob.projectId;
+    this.bidObj.userId = this.userService.loggedUserData.userId;
+    if(this.userService.loggedUserData == undefined) {
+      alert("Do Login First To BID")
+    } else {
+      this.openModel();
+    }
+  }
+
+  onSaveBid() {
     debugger;
+    this.jobService.applyBid(this.bidObj).subscribe((res:any)=>{
+      alert("Bid Placed Success");
+      this.bidObj = {
+        "bidId": 0,
+        "projectId": 0,
+        "userId": 0,
+        "bidAmount": 1,
+        "estimatedDays": 365,
+        "proposalText": "",
+        "status": "New",
+        "createdDate":  new Date()
+      }
+    })
+  }
+
+  openModel() {
+    if(this.loginModal) {
+      this.loginModal.nativeElement.style.display= "block"
+    }
+  }
+  closeModel() {
+    if(this.loginModal) {
+      this.loginModal.nativeElement.style.display= "none"
+    }
+  }
+  onRegisterUser(form:NgForm) {
+    
     if(!form.invalid) {
       this.userService.registerUser(this.registerObj).subscribe((res:IAPIResponce)=>{
         if(res.result) {
@@ -43,7 +93,7 @@ export class HomeComponent  implements OnInit,OnDestroy{
   getAllJobs(){
     this.subscriptions.push(
     this.jobService.getAllJobs().subscribe((res:JobList[])=>{
-      debugger;
+      
       this.jobList =  res;
     }));
   }

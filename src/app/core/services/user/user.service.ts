@@ -20,30 +20,30 @@ export class UserService {
   }
 
   getOriginalData(): Observable<IAPIResponce> {
-    debugger;
+    
     return this.http.get<IAPIResponce>(environment.API_URL + Constant.API_METHOD_NAME.USER.GET_ALL_USERS)
   }
 
   login(obj: any): Observable<IAPIResponce> {
-    debugger;
+    
     return this.http.post<IAPIResponce>(environment.API_URL + Constant.API_METHOD_NAME.USER.LOGIN, obj)
   }
 
   getAllUsers(): Observable<UserList[]> {
-    debugger;
+    
     return this.http.get<IAPIResponce>(environment.API_URL + Constant.API_METHOD_NAME.USER.GET_ALL_USERS).pipe(
       map((response: any) => {
-        debugger;
+        
         return response.data;
       })
     );
   }
 
   getAllUsers2(): Observable<UserList[]> {
-    debugger;
+    
     return this.http.get<IAPIResponce>(environment.API_URL + Constant.API_METHOD_NAME.USER.GET_ALL_USERS).pipe(
       map((response: any) => {
-        debugger;
+        
         const array = response.data;
         return array.map((res: UserList) => {
           return {
